@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "fahrdienst-richter-frankfurt",  // Kein "@" und korrektes Anführungszeichen
+    "site": "fahrdienst-richter-frankfurt",
     "public": "public",
     "ignore": [
       "firebase.json",
