@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "site": "fahrdienst-richter-frankfurt",
+    "site": "fahrdienst-richter-frankfurt", 
     "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
