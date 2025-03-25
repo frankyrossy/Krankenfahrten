@@ -1,33 +1,31 @@
+
 name: Deploy to Firebase
 on:
   push:
-    branches: [main]
+    branches: [main]  # Wird bei jedem Push zum "main"-Branch ausgelöst
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4  # Aktualisierte Version
+        uses: actions/checkout@v3
 
       - name: Install Node.js
-        uses: actions/setup-node@v4  # Aktualisiert auf v4
+        uses: actions/setup-node@v3
         with:
-          node-version: 20  # Node.js 20 (LTS)
+          node-version: 18
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Project
-        run: npm run build  # Nur wenn dein Projekt einen Build benötigt (z.B. React/Vue)
-
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools@latest
+        run: npm run build  # Für React/Vue/Next.js
 
       - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0  # Offizielle Action
+        uses: w9jds/firebase-action@v2
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}  # Nutze den Token aus login:ci
-          projectId: deine-projekt-id  # Ersetze mit deiner Firebase-Projekt-ID
-          channelId: live
+          args: deploy --only hosting  # Deploye nur Hosting
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
