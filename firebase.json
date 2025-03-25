@@ -1,11 +1,16 @@
 {
   "hosting": {
-    "site": "fahrdienst-richter-41ab2", 
-    "public": "build",  
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
